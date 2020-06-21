@@ -1,0 +1,39 @@
+{
+	"name": "sorted-iterators-find-matching",
+	"description": "Given an iterator of sorted items, find matching items in another.",
+	"version": "1.0.0",
+	"main": "index.js",
+	"files": [
+		"index.js",
+		"example.js",
+		"test.js"
+	],
+	"keywords": [
+		"sorted",
+		"list",
+		"iterator",
+		"iterable",
+		"asyncIterator",
+		"match",
+		"matching",
+		"compare"
+	],
+	"author": "Jannis R <mail@jannisr.de>",
+	"homepage": "https://github.com/derhuerst/sorted-iterators-find-matching",
+	"repository": "derhuerst/sorted-iterators-find-matching",
+	"bugs": "https://github.com/derhuerst/sorted-iterators-find-matching/issues",
+	"license": "ISC",
+	"engines": {
+		"node": ">=12"
+	},
+	"dependencies": {
+	},
+	"devDependencies": {
+		"eslint": "^7.3.0"
+	},
+	"scripts": {
+		"test": "node test.js",
+		"lint": "eslint .",
+		"prepublishOnly": "npm test && npm run lint"
+	}
+}
