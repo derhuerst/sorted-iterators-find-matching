@@ -8,16 +8,16 @@ const createIterateMatching = (compareFn, sortedItems) => {
 	}
 
 	if (!sortedItems) throw new Error('invalid sortedItems')
-	if (typeof sortedItems[Symbol.iterator] === 'function') {
+	if (typeof sortedItems[Symbol.asyncIterator] === 'function') {
 		// iterable, get an iterator from it
-		sortedItems = sortedItems[Symbol.iterator]()
+		sortedItems = sortedItems[Symbol.asyncIterator]()
 	}
 	if (typeof sortedItems.next !== 'function') {
-		throw new Error('sortedItems must be an iterator or iterable')
+		throw new Error('sortedItems must be an async iterator or iterable')
 	}
 
 	let keptItem = NONE
-	const iterateMatching = function* (model) {
+	const iterateMatching = async function* (model) {
 		if (keptItem !== NONE) {
 			const cmp = compareFn(model, keptItem)
 			if (cmp === 0) {
@@ -34,7 +34,7 @@ const createIterateMatching = (compareFn, sortedItems) => {
 		}
 
 		while (true) {
-			const {done, value: item} = sortedItems.next()
+			const {done, value: item} = await sortedItems.next()
 			if (done) return;
 
 			const cmp = compareFn(model, item)
